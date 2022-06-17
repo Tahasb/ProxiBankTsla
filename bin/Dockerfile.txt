@@ -1,0 +1,5 @@
+FROM openjdk:8-jdk-alpine
+expose 8090
+#Ce dockerfile doit être à la racine du projet poru que le chemin du jar soit valide
+ADD target/spring-boot-docker.jar spring-boot-docker.jar 
+ENTRYPOINT ["java","-jar","/spring-boot-docker.jar "]

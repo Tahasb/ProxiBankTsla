@@ -1,0 +1,33 @@
+<!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head></head>
+
+<body>
+
+	<div>
+		<table border="1">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+			<tr th:each="client : ${clients}">
+				<td th:utext="${client.nom}">...</td>
+				<td th:utext="${client.prenom}">...</td>
+				<td> <a th:href="@{/client/update/{id}(id=${client.id})}" class="btn btn-primary">Update</a>
+					<!--					<a th:href="@{/client/deleteClient/{id}(id=${client.id})}" class="btn btn-danger">Delete</a>-->
+					<form action="#" th:action="@{'/client/deleteClient/{id}'(id=${client.id})}" th:method="get">
+						<input type="hidden" name="_method" value="delete" />
+						<button type="submit" id="submitButton"> Delete</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+
+
+		<!--		ce bouton m'envoie vers la method getFormClientView du controller-->
+		<p><a href="/client/formClient">Add a new client</a></p>
+	</div>
+</body>
+
+</html>
