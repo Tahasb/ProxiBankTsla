@@ -18,9 +18,9 @@ class ProxiBankkTslaApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		CompteCourant compteCourant = compteCourantRepository.findByNumeroCompte("CCP2754");
+		//CompteCourant compteCourant = compteCourantRepository.findByNumeroCompte("CCP2754");
 		
-		assertNotNull(compteCourant);
+		//assertNotNull(compteCourant);
 	}
 	
 

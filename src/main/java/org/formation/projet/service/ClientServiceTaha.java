@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.formation.projet.DTO.ClientDTOTaha;
 import org.formation.projet.entity.ClientTaha;
+import org.formation.projet.entity.CompteCourant;
+import org.formation.projet.entity.Virement;
 import org.springframework.stereotype.Service;
 
 
@@ -20,5 +22,7 @@ public interface ClientServiceTaha {
 	ClientTaha convertClientDToToClient(ClientDTOTaha clientDto) throws ParseException;
 
 	ClientDTOTaha convertClientToClientDto(ClientTaha client);
+	
+	public void virement(Virement virement);
 
 }

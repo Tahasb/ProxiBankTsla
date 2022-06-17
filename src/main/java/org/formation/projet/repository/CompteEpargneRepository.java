@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CompteEpargneRepository extends JpaRepository<CompteEpargne, Long> {
 
-	CompteEpargne findByNumeroCompte(String numeroCompte);
+	CompteEpargne findByNumeroCompte(Long numeroCompte);
 
 }

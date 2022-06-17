@@ -25,8 +25,11 @@ public class CompteCourantControllerTaha {
 
 	@GetMapping("{id}")
 	public String getCompteCourant(@PathVariable(value = "id") Long id, Model model) {
+
 		ClientTaha client = clientService.findClientById(id);
+		System.err.println(client.getCompteCourant().getSolde());
 		CompteCourantTaha compteCourant = client.getCompteCourant();
+		System.err.println(compteCourant.getSolde());
 
 		model.addAttribute("compteCourant", compteCourant);
 

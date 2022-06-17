@@ -72,6 +72,7 @@ public class ConseillerController {
 			Conseiller conseiller = iCrudServiceConseiller.getConseillerbyId(id).get();
 
 			ConseillerDTO conseillerDto = new ConseillerDTO();
+			conseillerDto.setId(conseiller.getId());
 			conseillerDto.setNom(conseiller.getNom());
 			conseillerDto.setPrenom(conseiller.getPrenom());
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,7 +89,7 @@ public class ConseillerController {
 
 	@PostMapping("/update/{id}")
 	public String postUpdateConseiller(@PathVariable(value = "id") Long id, ConseillerDTO conseillerDto) throws ParseException {
-		System.out.println("HELLLLLLLLLLLO TAAHAHAHAHHA");
+	
 		Conseiller conseiller = new Conseiller();
 		
 		conseiller.setNom(conseillerDto.getNom());

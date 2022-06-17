@@ -35,7 +35,7 @@ public class ClientTaha {
 	public ClientTaha() {
 	}
 
-	public ClientTaha(String nom, String prenom, String email, String adresse, CompteCourantTaha compteCourant,
+	public ClientTaha(Long id, String nom, String prenom, String email, String adresse, CompteCourantTaha compteCourant,
 			CompteEpargneTaha compteEpargne) {
 		this.nom = nom;
 		this.prenom = prenom;
