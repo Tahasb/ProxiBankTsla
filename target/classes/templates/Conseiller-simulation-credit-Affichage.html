@@ -10,9 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Conseiller-Dashboard</title>
+<title>Dashboard conseiller</title>
 
-<!-- Custom fonts for this template -->
 <link th:href="@{/vendor/fontawesome-free/css/all.min.css}"
 	th:rel="stylesheet" type="text/css">
 <link
@@ -25,8 +24,6 @@
 <!-- Custom styles for this page -->
 <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}"
 	th:rel="stylesheet">
-
-
 
 </head>
 
@@ -95,7 +92,7 @@
 				data-target="#collapseUtilities" aria-expanded="true"
 				aria-controls="collapseUtilities"> <i
 					class="fas fa-clipboard-list fa-chart-area"></i> <span>Simulation
-						de crédit immobilié</span>
+						de crédit</span>
 			</a></li>
 			<hr class="sidebar-divider">
 
@@ -177,8 +174,8 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
 								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img id="profile-picture"
-								src="/assets/img/undraw_profile.svg">
+									McGee</span> <img class="templates/img-profile rounded-circle"
+								src="templates/img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -201,87 +198,54 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Géstion des clients</h1>
+					<h1 class="h3 mb-2 text-gray-800">Faire une simulation de
+						crédit</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Liste des
-								clients</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Remplir les
+								champs</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Nom</th>
-											<th>Prénom</th>
-											<th>Email</th>
-											<th>Date de création</th>
-											<th>Type de compte</th>
-											<th>Operations</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Nom</th>
-											<th>Prénom</th>
-											<th>Email</th>
-											<th>Date d'ouverture</th>
-											<th>Type de compte</th>
-											<th>Operations</th>
-										</tr>
-									</tfoot>
-									<tbody>
+						<div class="row">
+							<!--<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>-->
+							<div class="col-lg-7">
+								<div class="p-5">
 
-										<tr th:each="client : ${clients}">
-											<td th:utext="${client.nom}"></td>
-											<td th:utext="${client.prenom}"></td>
-											<td th:utext="${client.email}">...</td>
-											<td th:utext="${#dates.format(client.date, 'dd-MMM-yyyy')}">...</td>
-											<td><span><a
-													th:action="@{'/compteEpargne/{id}'(id=${client.id})}"
-													th:method="get"
-													th:utext="${client.compteEpargne!=Null} ? ${client.compteEpargne?.NOM}:''"
-													th:href="@{'/compteEpargne/{id}'(id=${client.id})}"></a></span> 
-													
-													<span><a
-													th:action="@{'/compteCourant/{id}'(id=${client.id})}"
-													th:method="get"
-													th:utext="${client.compteCourant!=Null} ? ${client.compteCourant?.NOM}:''"
-													th:href="@{'/compteCourant/{id}'(id=${client.id})}"></a> </span></td>
+									<form class="user" th:action="@{/client/credit}" method="POST">
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0">
+												<input type="number" class="form-control form-control-user"
+													name="montant" path="montant" required
+													placeholder="Montant">
+											</div>
+											<div class="col-sm-4">
+												<input type="number" class="form-control form-control-user"
+													name="duree" path="duree" required
+													placeholder="Durée en mois">
+											</div>
+											<div class="col-sm-4">
+												<input type="number" class="form-control form-control-user"
+													name="taux" path="taux" required placeholder="Taux">
+											</div>
+											
+										</div>
 
+										<input type="submit" value="Lancer la simulation"
+											class="btn btn-primary btn-user btn-block" />
+												
 
-											<td>
+									</form>
+									
+									<div class="card-header py-3">
+										<h6 class="m-0 font-weight-bold text-primary">Votre mensualité est de : <span th:utext="${mensualite}"></span></h6>
+										
+		
+									</div>
 
+				
 
-												<form action="#"
-													th:action="@{'/client/update/{id}'(id=${client.id})}"
-													th:method="get" class="btn btn-danger btn-circle">
-													<input type="hidden" name="_method" value="update" />
-													<button class="btn btn-info btn-circle" type="submit"
-														id="submitButton">
-														<i class="fas fa fa-edit"></i>
-													</button>
-												</form>
-
-												<form action="#"
-													th:action="@{'/client/deleteClient/{id}'(id=${client.id})}"
-													th:method="post" class="btn btn-danger btn-circle">
-													<input type="hidden" name="_method" value="delete" />
-													<button class="btn btn-danger btn-circle" type="submit"
-														id="submitButton">
-														<i class="fas fa-trash"></i>
-													</button>
-												</form>
-											</td>
-
-
-										</tr>
-
-									</tbody>
-								</table>
+								</div>
 							</div>
 						</div>
 					</div>

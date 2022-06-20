@@ -44,7 +44,7 @@ public class ConseillerController {
 
 		ConseillerDTO conseillerDto = new ConseillerDTO();
 //		Conseiller conseiller = new Conseiller();
-		model.addAttribute("conseiller", conseillerDto);
+		model.addAttribute("conseillerDto", conseillerDto);
 
 		// Cette ligne me redirige vers la page addConseiller.html
 		return "DirecteurAjouterUnConseiller";

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.formation.projet.DTO.ClientDTOTaha;
 import org.formation.projet.entity.ClientTaha;
+import org.formation.projet.entity.Credit;
 import org.formation.projet.entity.Virement;
 import org.formation.projet.service.ClientServiceTaha;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class ClientControllerTaha {
 
 	@Autowired
 	ClientServiceTaha clientService;
+	
+	
+	public double mensualite;
 
 //	public ClientControllerTaha(ClientServiceTaha clientService) {
 //
@@ -89,24 +93,34 @@ public class ClientControllerTaha {
 		return "Conseiller-virement";
 	}
 
-	@GetMapping("/Conseiller-simulation-credit")
-	public String GetSimulationCredit() {
-		return "Conseiller-simulation-credit";
-	}
+
 
 	@PostMapping("/virement")
 	public String postVirement(Virement virement, Model model) throws ParseException {
+		clientService.virement(virement);
 		System.err.println(virement);
-
-		clientService.virement(virement); 
-		System.err.println(virement);
-//		Virement virement = clientService.virement(virement);
-//		
-//		ClientTaha client = clientService.convertClientDToToClient(clientDto);
-//
-//		clientService.addClient(client);
 		return "redirect:/client";
 
+	}
+
+	@GetMapping("/Conseiller-simulation-credit")
+	public String GetSimulationCredit(Model model) {
+		Credit credit = new Credit();
+		model.addAttribute(credit);
+		return "Conseiller-simulation-credit";
+	}
+
+	@PostMapping("/credit")
+	public String PostSimulationCredit(Credit credit) {
+		System.err.println(credit);
+		mensualite = clientService.calculerMensualiterCredit(credit);
+		return "redirect:/client/credit";
+	}
+
+	@GetMapping("/credit")
+	public String GetSimulationCreditResultat(Model model) {
+		model.addAttribute("mensualite", String.format("%.2f", mensualite));
+		return "Conseiller-simulation-credit-Affichage";
 	}
 
 	// @PathVariable(

@@ -11,6 +11,7 @@ import org.formation.projet.DTO.ClientDTOTaha;
 import org.formation.projet.entity.ClientTaha;
 import org.formation.projet.entity.CompteCourantTaha;
 import org.formation.projet.entity.CompteEpargneTaha;
+import org.formation.projet.entity.Credit;
 import org.formation.projet.entity.Virement;
 import org.formation.projet.repository.ClientRepositoryTaha;
 import org.formation.projet.repository.CompteCourantRepository;
@@ -22,11 +23,9 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpTaha implements ClientServiceTaha {
 
 	ClientRepositoryTaha clientRepository;
-	
+
 	@Autowired
 	CompteCourantRepositoryTaha compteCourantRepositoryTaha;
-	
-	
 
 	public ClientServiceImpTaha(ClientRepositoryTaha clientRepository) {
 
@@ -77,12 +76,11 @@ public class ClientServiceImpTaha implements ClientServiceTaha {
 			CompteCourantTaha cr = new CompteCourantTaha();
 			cr.setDateOuverture(clientDto.getDate());
 			cr.setDecouvert(50000D);
-			cr.setNumeroCompte( generateUID());
-			
+			cr.setNumeroCompte(generateUID());
+
 			if (cr.getSolde() != null) {
-				
-			}
-			else {
+
+			} else {
 				cr.setSolde(0D);
 			}
 			cr.setVip(false);
@@ -137,21 +135,21 @@ public class ClientServiceImpTaha implements ClientServiceTaha {
 		double new_solde = solde_debi - virement.getMontant();
 		System.err.println("Le montant du compte debiteur est" + new_solde);
 		compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteDebit()).setSolde(new_solde);
-		
-		compteCourantRepositoryTaha.save(compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteDebit()));
-		
+
+		compteCourantRepositoryTaha
+				.save(compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteDebit()));
 
 		System.err.println("Le num de compte débité"
 				+ compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteDebit()).getSolde());
 
-		
-		double solde_credit = compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit()).getSolde();
+		double solde_credit = compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit())
+				.getSolde();
 		new_solde = solde_credit + virement.getMontant();
-		
+
 		compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit()).setSolde(new_solde);
-		compteCourantRepositoryTaha.save(compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit()));
-		
-		
+		compteCourantRepositoryTaha
+				.save(compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit()));
+
 		System.err.println("Le solde de compte credité"
 				+ compteCourantRepositoryTaha.findByNumeroCompte(virement.getNumeroCompteCredit()).getSolde());
 
@@ -160,6 +158,15 @@ public class ClientServiceImpTaha implements ClientServiceTaha {
 	private static Long generateUID() {
 		return Long.valueOf(Math.round(Math.random() * 10000));
 
+	}
+
+	@Override
+	public double calculerMensualiterCredit(Credit credit) {
+		double t = credit.getTaux() / 100;
+		double t1 = credit.getMontant() * t / 12;
+		double t2 = 1 - Math.pow(1 + t / 12, -credit.getDuree());
+		double mensualite = t1 / t2;
+		return mensualite;
 	}
 
 }
