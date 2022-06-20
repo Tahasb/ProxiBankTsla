@@ -17,16 +17,23 @@ public class CompteTaha {
 
 	private Boolean vip;
 
-	public CompteTaha(Long numeroCompte, String dateOuverture, Double solde, Boolean vip) {
+
+
+	public CompteTaha(Long id, Long numeroCompte, String dateOuverture, Double solde, Boolean vip) {
+		
+		this.id = id;
 		this.numeroCompte = numeroCompte;
 		this.dateOuverture = dateOuverture;
 		this.solde = solde;
 		this.vip = vip;
 	}
 
+
+
 	public CompteTaha() {
 
 	}
+
 
 	public Long getId() {
 		return id;
@@ -36,13 +43,6 @@ public class CompteTaha {
 		this.id = id;
 	}
 
-	public Long getNumeroCompte() {
-		return numeroCompte;
-	}
-
-	public void setNumeroCompte(Long numeroCompte) {
-		this.numeroCompte = numeroCompte;
-	}
 
 	public String getDateOuverture() {
 		return dateOuverture;
@@ -67,5 +67,19 @@ public class CompteTaha {
 	public void setVip(Boolean vip) {
 		this.vip = vip;
 	}
+
+
+
+	public Long getNumeroCompte() {
+		return numeroCompte;
+	}
+
+
+
+	public void setNumeroCompte(Long numeroCompte) {
+		this.numeroCompte = numeroCompte;
+	}
+	
+	
 
 }

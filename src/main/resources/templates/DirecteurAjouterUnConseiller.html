@@ -201,9 +201,8 @@
 						<div class="row">
 							<div class="col-lg-7">
 								<div class="p-5">
-
 									<form class="user" th:action="@{/conseiller/addConseiller}"
-										th:object="${conseiller}" method="POST">
+										th:object="${conseillerDto}" method="POST">
 										<div class="form-group row">
 											<div class="col-sm-6 mb-3 mb-sm-0">
 												<input type="text" class="form-control form-control-user"
@@ -218,11 +217,6 @@
 											</div>
 
 										</div>
-
-
-
-
-
 										<div class="form-group row">
 											<div class="col-sm-4 mb-3 mb-sm-0">
 												<label for="start">Date de création</label> <input
@@ -230,15 +224,10 @@
 													placeholder="Date" formControlName="date"
 													th:field="*{date}" required>
 											</div>
-
-
-
 										</div>
-
 										<input type="submit" value="Ajouter"
 											class="btn btn-primary btn-user btn-block" />
 									</form>
-
 								</div>
 							</div>
 						</div>

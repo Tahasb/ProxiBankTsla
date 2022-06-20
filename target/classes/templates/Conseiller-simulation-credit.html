@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
 
@@ -38,7 +38,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-				<a
+			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/client}">
 				<div class="sidebar-brand-icon rotate-n-15">
@@ -87,7 +87,8 @@
 
 			<hr class="sidebar-divider">
 
-			<li class="nav-item"><a class="nav-link collapsed" th:href="@{/client/Conseiller-simulation-credit}"
+			<li class="nav-item"><a class="nav-link collapsed"
+				th:href="@{/client/Conseiller-simulation-credit}"
 				data-target="#collapseUtilities" aria-expanded="true"
 				aria-controls="collapseUtilities"> <i
 					class="fas fa-clipboard-list fa-chart-area"></i> <span>Simulation
@@ -211,53 +212,34 @@
 							<div class="col-lg-7">
 								<div class="p-5">
 
-									<form class="user">
+									<form class="user" th:action="@{/client/credit}" method="POST"
+										 th:object="${credit}">
 										<div class="form-group row">
 											<div class="col-sm-4 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user"
-													id="exampleFirstName" placeholder="Montant">
+												<input th:field="*{montant}" type="number" class="form-control form-control-user"
+													name="montant" required
+													placeholder="Montant">
 											</div>
 											<div class="col-sm-4">
-												<input type="text" class="form-control form-control-user"
-													id="exampleLastName" placeholder="Durée en mois">
+												<input th:field="*{duree}" type="number" class="form-control form-control-user"
+													name="duree" required
+													placeholder="Durée en mois">
 											</div>
 											<div class="col-sm-4">
-												<input type="text" class="form-control form-control-user"
-													id="exampleLastName" placeholder="Taux">
+												<input th:field="*{taux}" type="number" class="form-control form-control-user"
+													name="taux" required placeholder="Taux">
 											</div>
+
 										</div>
-										<!--<div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                   placeholder="montant">
-                        </div>-->
-										<!--<div class="form-group row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="password" class="form-control form-control-user"
-                id="exampleInputPassword" placeholder="Password">
-        </div>
-        <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user"
-                id="exampleRepeatPassword" placeholder="Repeat Password">
-        </div>
-    </div>-->
-										<a href="login.html"
-											class="btn btn-primary btn-user btn-block"> Lancer la
-											simulation </a>
-										<!--<hr>-->
-										<!--<a href="index.html" class="btn btn-google btn-user btn-block">
-        <i class="fab fa-google fa-fw"></i> Register with Google
-    </a>
-    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-        <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-    </a>-->
+
+										<input type="submit" value="Lancer la simulation"
+											class="btn btn-primary btn-user btn-block" />
+								
+
 									</form>
-									<!--<hr>-->
-									<!--<div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                </div>
-                <div class="text-center">
-                    <a class="small" href="login.html">Already have an account? Login!</a>
-                </div>-->
+
+									
+
 								</div>
 							</div>
 						</div>

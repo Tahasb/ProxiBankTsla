@@ -82,7 +82,7 @@ public class ClientController {
 //			@PathVariable(value = "compte_debiteur") String numeroCompteDebit,
 //			@PathVariable(value = "compte_crediteur") String numeroCompteCredit) {
 //
-////		iCrudServiceClient.virement(montant, numeroCompteDebit, numeroCompteCredit);
+//		iCrudServiceClient.virement(montant, numeroCompteDebit, numeroCompteCredit);
 //		return "redirect:/client";
 //	}
 

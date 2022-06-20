@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CompteCourantRepository extends JpaRepository<CompteCourant, Long> {
 
-	CompteCourant findByNumeroCompte(String numeroCompte);
+	CompteCourant findByNumeroCompte(Long numeroCompte);
 
 }

@@ -15,9 +15,11 @@ public class CompteCourantTaha extends CompteTaha {
 	public CompteCourantTaha() {
 	}
 
-	public CompteCourantTaha(Long numeroCompte, String dateOuverture, Double solde, Boolean vip, Double decouvert) {
-		super(numeroCompte, dateOuverture, solde, vip);
-		this.setDecouvert(decouvert);
+	public CompteCourantTaha(Long id, Long numeroCompte, String dateOuverture, Double solde, Boolean vip,
+			ClientTaha client, Double decouvert) {
+		super(id, numeroCompte, dateOuverture, solde, vip);
+		this.client = client;
+		this.decouvert = decouvert;
 	}
 
 	public Double getDecouvert() {

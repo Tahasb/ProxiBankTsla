@@ -15,12 +15,24 @@ public class CompteEpargneTaha extends CompteTaha {
 	public CompteEpargneTaha() {
 	}
 
-	public CompteEpargneTaha(Long numeroCompte, String dateOuverture, Double solde, Boolean vip, Double tauxRem) {
-		super(numeroCompte, dateOuverture, solde, vip);
-		this.setTauxRem(tauxRem);
+
+
+
+
+
+
+	public CompteEpargneTaha(Long id, Long numeroCompte, String dateOuverture, Double solde, Boolean vip,
+			ClientTaha client, Double tauxRem) {
+		super(id, numeroCompte, dateOuverture, solde, vip);
+		this.client = client;
+		this.tauxRem = tauxRem;
 	}
 
-	
+
+
+
+
+
 
 	@Override
 	public String toString() {

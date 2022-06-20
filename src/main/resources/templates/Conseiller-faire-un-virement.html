@@ -212,20 +212,37 @@
 							<div class="col-lg-7">
 								<div class="p-5">
 
-									<form class="user">
+									<form class="user" th:action="@{/client/virement}"
+										th:object="${virement}" method="POST">
 										<div class="form-group row">
-											<div class="col-sm-6 mb-3 mb-sm-0">
-												<input type="text" class="form-control form-control-user"
-													id="exampleFirstName" placeholder="compte à débiter">
+<!-- 											<div class="col-sm-6 mb-3 mb-sm-0"> -->
+<!-- 												<input type="text" class="form-control form-control-user" -->
+<!-- 													id="exampleFirstName" placeholder="compte à débiter" -->
+<!-- 													th:field="*{numeroCompteDebit}"> -->
+<!-- 											</div> -->
+<!-- 											<div class="col-sm-6"> -->
+<!-- 												<input type="text" class="form-control form-control-user" -->
+<!-- 													id="exampleLastName" placeholder="compte à créditer" -->
+<!-- 													th:field="*{numeroCompteCredit}"> -->
+<!-- 											</div> -->
+											<div
+												class="form-group"> <input type="number"
+													class="form-control form-control-user"
+													id="exampleInputEmail" placeholder="montant"
+													th:field="*{numeroCompteDebit}">
 											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control form-control-user"
-													id="exampleLastName" placeholder="compte à créditer">
+											<div
+												class="form-group"> <input type="number"
+													class="form-control form-control-user"
+													id="exampleInputEmail" placeholder="montant"
+													th:field="*{numeroCompteCredit}">
 											</div>
-										</div>
-										<div class="form-group">
-											<input type="email" class="form-control form-control-user"
-												id="exampleInputEmail" placeholder="montant">
+											<div
+												class="form-group"> <input type="number"
+													class="form-control form-control-user"
+													id="exampleInputEmail" placeholder="montant"
+													th:field="*{montant}">
+											</div>
 										</div>
 										<!--<div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -237,9 +254,12 @@
                                 id="exampleRepeatPassword" placeholder="Repeat Password">
                         </div>
                     </div>-->
-										<a href="login.html"
-											class="btn btn-primary btn-user btn-block"> Effectuer le
-											virement </a>
+										<!-- 										<a href="login.html" -->
+										<!-- 											class="btn btn-primary btn-user btn-block"> Effectuer le -->
+										<!-- 											virement </a> -->
+
+										<input type="submit" value="effectuer le virement"
+											class="btn btn-primary btn-user btn-block" />
 										<!--<hr>-->
 										<!--<a href="index.html" class="btn btn-google btn-user btn-block">
                         <i class="fab fa-google fa-fw"></i> Register with Google
